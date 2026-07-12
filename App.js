@@ -106,6 +106,16 @@ export default function App() {
     return () => sub.remove();
   }, [refresh]);
 
+  // Check for state change if the App is still up if you remove notifications
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (AppState.currentState === 'active') {
+        refresh();
+      }
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [refresh]);
+
   const update = async list => {
     setNotes(list);
     await saveNotes(list);
@@ -231,7 +241,7 @@ export default function App() {
           <View style={styles.modalBox}>
             <Text style={styles.modalTitle}>Edit note</Text>
             <TextInput
-              style={styles.input}
+              style={[styles.input, {flex: 0}]}
               value={editText}
               onChangeText={setEditText}
               autoFocus
