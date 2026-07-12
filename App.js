@@ -170,6 +170,7 @@ export default function App() {
           value={newText}
           onChangeText={setNewText}
           placeholder="New note (e.g. Seat 35F)"
+          placeholderTextColor="#888"
           maxLength={MAX_NOTE_LENGTH}
         />
         <TouchableOpacity
@@ -180,7 +181,7 @@ export default function App() {
         </TouchableOpacity>
       </View>
 
-      // Let users know they are hitting the char length limit
+      {/* Let users know they are hitting the char length limit */}
       {newText.length >= MAX_NOTE_LENGTH - 5 && (
         <Text style={styles.limitText}>
           {newText.length}/{MAX_NOTE_LENGTH} characters
@@ -266,6 +267,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 10,
     fontSize: 16,
+    color: '#111',
   },
   limitText: {color: '#c0392b', marginTop: 6, fontSize: 13},
   card: {
